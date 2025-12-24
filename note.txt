@@ -19,3 +19,7 @@ la leva ti fa pagare ogni giorno un valore (credo 0,01% ma non ne sono sicuro) e
 i valori che dovrebbe prendere in input l'agente sono simbolo apertura uscita e volume
 
 dovrò scrivere un report e inviarlo via mail al professore riguardo l'agente
+
+
+FRASI CONSIGLIATE PER LA RELAZIONE:
+“Non tutti i simboli presenti nella lista NASDAQ dispongono di serie storiche giornaliere complete su Yahoo Finance; in particolare warrant, titoli delistati o quotati per periodi brevi vengono automaticamente esclusi.”
