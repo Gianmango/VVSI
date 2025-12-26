@@ -4,7 +4,7 @@ import pandas as pd
 conn = psycopg2.connect(
     dbname="nasdaq",
     user="postgres",
-    password="TUA_PASSWORD",
+    password="pistone",
     host="localhost",
     port=5432
 )
