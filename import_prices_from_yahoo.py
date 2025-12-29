@@ -18,7 +18,7 @@ for symbol in symbols:
         df = yf.download(
             symbol,
             start="2000-01-01",
-            end="2025-01-01",
+            end="2026-01-01",
             auto_adjust=False,
             progress=False
         )

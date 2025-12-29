@@ -21,5 +21,10 @@ i valori che dovrebbe prendere in input l'agente sono simbolo apertura uscita e 
 dovrò scrivere un report e inviarlo via mail al professore riguardo l'agente
 
 
-FRASI CONSIGLIATE PER LA RELAZIONE:
-“Non tutti i simboli presenti nella lista NASDAQ dispongono di serie storiche giornaliere complete su Yahoo Finance; in particolare warrant, titoli delistati o quotati per periodi brevi vengono automaticamente esclusi.”
+
+NOTA:
+ho spostato la cartella data fuori dal progetto solo per comodità per usare github senza dover caricare 3.2k file
+
+Per avviare il progetto apri due schede del pannello dei comandi: 
+postgrest postgres.conf    
+py agent.py
