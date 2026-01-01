@@ -13,7 +13,7 @@ conn = psycopg2.connect(
 )
 cur = conn.cursor()
 
-DATA_DIR = "../../data"
+DATA_DIR = "../../../data"
 
 files = os.listdir(DATA_DIR)
 
@@ -22,7 +22,7 @@ for filename in files:
     path = os.path.join(DATA_DIR, filename)
 
     # leggi un CSV così com'è
-    df = pd.read_csv("../data/MSFT.csv", skiprows=2)  # salta le prime due righe inutili
+    df = pd.read_csv("../../data/MSFT.csv", skiprows=2)  # salta le prime due righe inutili
     
     # rinomina le colonne correttamente
     df.columns = ["Date", "Adj Close", "Close", "High", "Low", "Open", "Volume"]

@@ -6,7 +6,7 @@ import pandas as pd
 import os
 
 # Crea cartella dove mettere i file
-os.makedirs("../data", exist_ok=True)
+os.makedirs("../../data", exist_ok=True)
 
 # Copia dal file dei simboli tutti i simboli
 df = pd.read_csv("nasdaq_symbols.csv")
@@ -26,7 +26,7 @@ for symbol in symbols:
         if df.empty:
             continue
 
-        df.to_csv(f"../data/{symbol}.csv")
+        df.to_csv(f"../../data/{symbol}.csv")
         time.sleep(0.5)
 
     except Exception as e:
@@ -34,4 +34,4 @@ for symbol in symbols:
 
 
 print(f"Simboli totali: {len(symbols)}")
-print(f"CSV salvati: {len(os.listdir('../data'))}")
+print(f"CSV salvati: {len(os.listdir('../../data'))}")

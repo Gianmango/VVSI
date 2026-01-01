@@ -3,7 +3,7 @@ import functools
 import pandas as pd
 import os
 
-DATA_DIR = "../../data"  # cartella con i csv scaricati
+DATA_DIR = "../../../data"  # cartella con i csv scaricati
 BASE_URL = "http://localhost:3001"
 
 def load_valid_symbols():
