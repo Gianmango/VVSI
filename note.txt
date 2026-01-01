@@ -27,4 +27,4 @@ ho spostato la cartella data fuori dal progetto solo per comodità per usare git
 
 Per avviare il progetto apri due schede del pannello dei comandi: 
 postgrest postgres.conf    
-py agent.py
+py run_simulation.py

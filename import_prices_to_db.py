@@ -13,7 +13,7 @@ conn = psycopg2.connect(
 )
 cur = conn.cursor()
 
-DATA_DIR = "../data"
+DATA_DIR = "../../data"
 
 files = os.listdir(DATA_DIR)
 
