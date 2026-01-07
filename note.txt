@@ -8,3 +8,16 @@ questo perché il mio pc non riusciva a reggere la simulazione completa e ho dov
 
 
 in totale i simboli validi sono 770 circa, rispetto ai 4000+ che ho inizialmente
+
+
+Per lanciare il progetto aprire due schede del terminale e lanciare:
+1. postgrest postgrest.conf
+2. agent/parallel_run_simulation.py
+
+ovviamente prima postgrest sennò senza interfaccia rest la simulazione non si avvia
+
+
+Se invece vuoi scaricare i dati da yahoo e caricarli in postgres:
+1. import_prices_from_yahoo.py
+2. import_prices_to_db.py
+3. import_symbols_to_db.py
