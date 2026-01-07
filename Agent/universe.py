@@ -1,9 +1,9 @@
 import requests
-import functools
 import pandas as pd
 import os
 
-DATA_DIR = "../../../data"  # cartella con i csv scaricati
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(_SCRIPT_DIR, "..", "..", "data")
 BASE_URL = "http://localhost:3001"
 
 def load_valid_symbols():
@@ -17,44 +17,29 @@ def load_valid_symbols():
     return sorted(symbols)
 
 
-@functools.lru_cache(maxsize=1)
-def _fetch_all_prices():
-    """Fetch all prices once and cache the result"""
-    print("Fetching price data from API...")
-    url = f"{BASE_URL}/v_geom_mean_30?order=date.asc"
-    r = requests.get(url)
-    r.raise_for_status()
-    df = pd.DataFrame(r.json())
-    df["date"] = pd.to_datetime(df["date"])
-    print(f"Loaded {len(df)} price records")
-    return df
-def fetch_prices_for_window(window):
-    """
-    Get prices from cache and filter by window if needed.
-    The window parameter is kept for backward compatibility but not used.
-    """
-    return _fetch_all_prices()
+def fetch_prices_for_window(symbol, window):
+    url = f"{BASE_URL}/v_geom_mean_{window}?symbol=eq.{symbol}&order=date.asc"
+    response = requests.get(url)
+    response.raise_for_status()
+    data = response.json()
+    return pd.DataFrame(data)
 
 
-def build_daily_universe(df, valid_symbols):
-    """
-    Trasforma il dataframe in:
-    date -> { symbol -> price_row }
-    """
-    universe = {}
+def build_daily_universe(df, symbols, window):
+    universe = []
+    geom_col = f"geom_mean_{window}"
 
     for _, row in df.iterrows():
-        sym = row["symbol"]
-        if sym not in valid_symbols:
-            continue
-
-        date = row["date"]
-        universe.setdefault(date, {})[sym] = {
-            "open": row["open"],
+        universe.append({
+            "symbol": row["symbol"],
+            "date": row["date"],
+            "open": row["open_price"],
             "high": row["high"],
             "low": row["low"],
-            "close": row["close"],
-            "geom_mean": row["geom_mean"]
-        }
-
+            "close": row["close_price"],
+            "adj_close": row["adj_close"],
+            "volume": row["volume"],
+            "geom_mean": row[geom_col] if geom_col in row else row["close_price"]
+        })
     return universe
+

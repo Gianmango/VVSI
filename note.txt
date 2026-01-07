@@ -1,30 +1,10 @@
-come funziona il progetto:
+Note:
 
-- prima di tutto crea il db con il nasdaq
-- crea l'agente
+la cartella Data è mantenuta fuori dal progetto per comodità di gestione con github
+(per evitare di caricare 3.2k file)
 
-strategia:
-- vendita fissa sopra una soglia
-- compra con una specifica media geometrica
-- memoria per media geometrica deve essere variabile (magari per i primi test facciamo 30 giorni)
-- utilizziamo una leva (con valore da 2-10 che possiamo cambiare testando) la leva è un "prestito" che ti permette di usare
- il tuo importo * leva; tuttavia se il mercato scende sotto 100/leva % perdi il valore del tuo conto quindi perdi tutto e ti devi fermare
- al contrario se il mercato sale guadagni *leva.
- inoltre bisogna usare una strategia efficace ma con meno rischio, ad esempio anche se comprare ogni volta quando vi è una specifica andatura
- comporta ad un enorme guadagno ma il valore oscilla troppo conviene invece ridurre il guadagno per puntare ad un'oscillazione minore e più prevedibile
-
-la leva ti fa pagare ogni giorno un valore (credo 0,01% ma non ne sono sicuro) e quando entri/esci (ossia buy/sell) devi pagare una piccola quota aggiuntiva (che non so a quanto ammonti)
+la funzione merge_and_analyze_results.py unisce tutti i file di risultato in un unico file csv
+questo perché il mio pc non riusciva a reggere la simulazione completa e ho dovuto dividerla in 3 parti
 
 
-i valori che dovrebbe prendere in input l'agente sono simbolo apertura uscita e volume
-
-dovrò scrivere un report e inviarlo via mail al professore riguardo l'agente
-
-
-
-NOTA:
-ho spostato la cartella data fuori dal progetto solo per comodità per usare github senza dover caricare 3.2k file
-
-Per avviare il progetto apri due schede del pannello dei comandi: 
-postgrest postgres.conf    
-py run_simulation.py
+in totale i simboli validi sono 770 circa, rispetto ai 4000+ che ho inizialmente

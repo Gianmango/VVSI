@@ -1,0 +1,2 @@
+window,leverage,tp,sl,dp,capital_per_trade,profit_total,max_drawdown,volatility,sharpe,profit_per_trade,num_trades,score
+100.0,10.0,3.0,20.0,10.0,10000.0,57000.0,-0.9205776173285198,0.2092270115323267,0.4466832724853926,35.491905354922096,1606.0,0.4829585317679313

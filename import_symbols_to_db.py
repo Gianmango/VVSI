@@ -1,5 +1,6 @@
 import psycopg2
 import pandas as pd
+import os
 
 conn = psycopg2.connect(
     dbname="nasdaq",
@@ -10,12 +11,25 @@ conn = psycopg2.connect(
 )
 cur = conn.cursor()
 
-df = pd.read_csv("nasdaq_symbols.csv")
+cur.execute("TRUNCATE TABLE symbols RESTART IDENTITY CASCADE")
+conn.commit()
+
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+df = pd.read_csv(os.path.join(_SCRIPT_DIR, "nasdaq_symbols.csv"))
+data_dir = os.path.join(_SCRIPT_DIR, "..", "data")
+existing = set()
+if os.path.isdir(data_dir):
+    for f in os.listdir(data_dir):
+        if f.endswith(".csv"):
+            existing.add(f.replace(".csv", ""))
 df = df.dropna(subset=["Symbol"])
 df["Symbol"] = df["Symbol"].astype(str)
 
 for _, row in df.iterrows():
     symbol = row["Symbol"].replace(".", "-")
+
+    if symbol not in existing:
+        continue
 
     cur.execute("""
         INSERT INTO symbols (symbol, name, sector, industry, country)
