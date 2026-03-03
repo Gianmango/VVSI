@@ -7,11 +7,11 @@ import os
 import random
 
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-_DATA_DIR = os.path.join(_SCRIPT_DIR, "..", "data")
+_DATA_DIR = os.path.join(_SCRIPT_DIR, "data")
 os.makedirs(_DATA_DIR, exist_ok=True)
 
 # Copia dal file dei simboli tutti i simboli
-df = pd.read_csv(os.path.join(_SCRIPT_DIR, "nasdaq_symbols.csv"))
+df = pd.read_csv(os.path.join(_DATA_DIR, "nasdaq_symbols.csv"))
 symbols = df["Symbol"].dropna().astype(str).unique().tolist()
 
 start_date = pd.Timestamp("2000-01-01")

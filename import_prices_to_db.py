@@ -12,7 +12,7 @@ conn = psycopg2.connect(
 cur = conn.cursor()
 
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR = os.path.join(_SCRIPT_DIR, "..", "data")
+DATA_DIR = os.path.join(_SCRIPT_DIR, "data")
 
 files = os.listdir(DATA_DIR)
 

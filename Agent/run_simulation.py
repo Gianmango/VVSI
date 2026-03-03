@@ -201,7 +201,7 @@ def run_single(window, leverage, tp, sl, dp, capital_per_trade, valid_symbols=No
     if not valid_symbols:
         return _empty_result(window, leverage, tp, sl, dp, capital_per_trade)
     
-    data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "data"))
+    data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data"))
     
     combined_df, universe_by_date, dates = get_combined_df_and_universe(
         valid_symbols, window, data_dir
@@ -259,12 +259,16 @@ def _empty_result(window, leverage, tp, sl, dp, capital_per_trade):
         "sl": sl,
         "dp": dp,
         "capital_per_trade": capital_per_trade,
+        "initial_cash": float(INITIAL_CASH),
+        "final_cash": float(INITIAL_CASH),
+        "yield_pct": 0.0,
         "profit_total": 0,
         "max_drawdown": 0,
         "volatility": 0,
         "sharpe": 0,
         "profit_per_trade": 0,
         "num_trades": 0,
+        "avg_holding_days": 0.0,
         "score": -1e9,
     }
 
@@ -282,7 +286,18 @@ def run():
 
     for i, (window, leverage, tp, sl, dp, capital_per_trade) in enumerate(param_combinations, 1):
         print(f"[{i}/{len(param_combinations)}] w={window} lev={leverage}x tp={tp}% sl={sl}% dp={dp}% cpt=${capital_per_trade}")
-        results.append(run_single(window, leverage, tp, sl, dp, capital_per_trade, valid_symbols, verbose=False))
+        res = run_single(window, leverage, tp, sl, dp, capital_per_trade, valid_symbols, verbose=False)
+        results.append(res)
+        try:
+            print(
+                "    "
+                f"C0=${res.get('initial_cash', INITIAL_CASH):,.2f} "
+                f"C1=${res.get('final_cash', float('nan')):,.2f} "
+                f"Yield={res.get('yield_pct', float('nan')):.4f}% "
+                f"Holding medio={res.get('avg_holding_days', float('nan')):.2f}gg"
+            )
+        except Exception:
+            pass
 
     df_results = pd.DataFrame(results)
     best = df_results.sort_values("score", ascending=False).groupby("window").first()

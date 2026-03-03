@@ -1,16 +1,16 @@
 # Finestre
-WINDOWS = [50, 100, 200]
+WINDOWS = [200]
 
 # Leve
 LEVERS = [1, 2, 5, 10]
 
 # Percentuale di take profit
-TP_MULT = [1.5, 2, 2.5, 3]  #  1.5%, 2%, 2.5%, 3%
+TP_MULT = [2.5, 5, 10, 20]  #  2.5%, 5%, 10%, 20%
 
 # Percentuale di stop loss
 SL_PCT = [10, 15, 20]  # 10%, 15%, 20%
 
-# Percentuale di discount price
+# Percentuale di down price
 DP_PCT = [10, 15, 20]  #  10%, 15%, 20%
 
 # Casi da testare per il capitale per trade

@@ -3,7 +3,7 @@ import pandas as pd
 import os
 
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR = os.path.join(_SCRIPT_DIR, "..", "..", "data")
+DATA_DIR = os.path.join(_SCRIPT_DIR, "..", "data")
 BASE_URL = "http://localhost:3001"
 
 def load_valid_symbols():

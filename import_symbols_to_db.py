@@ -15,8 +15,8 @@ cur.execute("TRUNCATE TABLE symbols RESTART IDENTITY CASCADE")
 conn.commit()
 
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-df = pd.read_csv(os.path.join(_SCRIPT_DIR, "nasdaq_symbols.csv"))
-data_dir = os.path.join(_SCRIPT_DIR, "..", "data")
+data_dir = os.path.join(_SCRIPT_DIR, "data")
+df = pd.read_csv(os.path.join(data_dir, "nasdaq_symbols.csv"))
 existing = set()
 if os.path.isdir(data_dir):
     for f in os.listdir(data_dir):

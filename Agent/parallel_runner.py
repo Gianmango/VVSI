@@ -143,6 +143,7 @@ if __name__ == "__main__":
     print("\n[4/5] Preparazione processi...")
     worker_args = [(params, valid_symbols) for params in grid]
     os.makedirs("results", exist_ok=True)
+    pool_size = min(mp.cpu_count(), len(grid))  # Usa tutti i CPU o meno se ci sono meno combinazioni
     print(f"        {pool_size} processi pronti")
     
     # [5] Esecuzione simulazioni parallele
